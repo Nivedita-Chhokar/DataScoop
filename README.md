@@ -21,3 +21,14 @@ DataScoop is a simple and efficient file downloader web application. Just paste 
 4. Paste the URL of the file you want to download.
 5. Click the Download File button.
 6. The file will download automatically to your device.
+
+
+Main Interface
+![Screenshot 2024-12-07 230511](https://github.com/user-attachments/assets/36c6ba1b-f34c-41a5-9e0c-6af709268078)
+#
+Error will be displayed if the URL is wrong or some file URLs may fail due to cross-origin restrictions.
+![Screenshot 2024-12-07 230626](https://github.com/user-attachments/assets/bec00c8f-e970-41d8-86d5-f12cfa13f4a3)
+#
+The following screenshot demonstrates the DataScoop application successfully downloading a file.
+![Screenshot 2024-12-07 230751](https://github.com/user-attachments/assets/9dbc204e-f10e-4705-b1bb-982b2082f6ba)
+
