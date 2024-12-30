@@ -40,9 +40,16 @@ form {
     margin-top: 20px;
 }
 
-form input {
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
     width: 100%;
-    padding: 12px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 40px 12px 12px; 
     margin-bottom: 15px;
     border: none;
     border-radius: 8px;
@@ -54,9 +61,34 @@ form input {
     transition: 0.3s;
 }
 
-form input:focus {
+.input-wrapper input:focus {
     border: 2px solid #ffd700;
     box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
+}
+
+.clear-button {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #aaa;
+    background: transparent;
+    border: none;
+    outline: none;
+    display: none; 
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.input-wrapper input:focus + .clear-button,
+.input-wrapper input:not(:placeholder-shown) + .clear-button {
+    display: block; 
+}
+
+.clear-button:hover {
+    color: #ff5555; 
+    transform: translateY(-50%) scale(1.1); 
 }
 
 form button {
