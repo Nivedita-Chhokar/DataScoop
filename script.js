@@ -1,18 +1,40 @@
-const fileInput = document.querySelector("input");
+const fileInput = document.querySelector("#file-input");
+const clearBtn = document.querySelector("#clear-btn");
 const downloadBtn = document.querySelector("button");
 
-downloadBtn.addEventListener("click", (e) =>{
-    e.preventDefault();
-    downloadBtn.innerText="Downloading File...";
-    fetchFile(fileInput.value);
+clearBtn.addEventListener("click", () => {
+    fileInput.value = ""; 
+    clearBtn.style.display = "none"; 
 });
 
-function fetchFile(url){
+fileInput.addEventListener("input", () => {
+    if (fileInput.value.trim()) {
+        clearBtn.style.display = "block"; 
+    } else {
+        clearBtn.style.display = "none"; 
+    }
+});
+
+downloadBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const url = fileInput.value.trim();
+
+    // Bonus URL validation ;)
+    if (!url || (!url.startsWith("http://") && !url.startsWith("https://"))) {
+        alert("Please enter a valid URL.");
+        return;
+    }
+
+    downloadBtn.innerText = "Downloading File...";
+    fetchFile(url);
+});
+
+function fetchFile(url) {
     console.log("Fetching file from: ", url);
     fetch(url)
         .then((res) => {
             if (!res.ok) throw new Error("Network response was not ok");
-            return res.blob(); 
+            return res.blob();
         })
         .then((file) => {
             let tempUrl = URL.createObjectURL(file);
@@ -24,9 +46,10 @@ function fetchFile(url){
             aTag.remove();
             URL.revokeObjectURL(tempUrl);
             downloadBtn.innerText = "Download File";
-    }).catch((err)=>{
-        console.log("ERROR: ", err);
-        alert("Failed to download file. Please check the URL");
-        downloadBtn.innerText= "Download File";
-    });
+        })
+        .catch((err) => {
+            console.error("ERROR:", err);
+            alert("Failed to download file. Please check the URL.");
+            downloadBtn.innerText = "Download File";
+        });
 }
