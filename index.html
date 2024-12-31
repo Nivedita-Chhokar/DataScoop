@@ -14,7 +14,10 @@
         </header>
 
         <form action="#">
-            <input type="url" placeholder="Paste file URL">
+            <div class="input-wrapper">
+                <input type="url" id="file-input" placeholder="Paste file URL" required>
+                <span class="clear-button" id="clear-btn">&times;</span>
+            </div>
             <button>Download File</button>
         </form>
     </div>
